@@ -2,7 +2,7 @@
   "name": "vue-vuex-webpack-learn",
   "version": "1.0.0",
   "description": "一个仿照饿了吗基于vue、webpack、vuex的学习示例",
-  "author": "[C仪)",
+  "author": "两仪",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
