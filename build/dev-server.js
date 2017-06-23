@@ -29,35 +29,49 @@ var devMiddleware = require('webpack-dev-middleware')(compiler, {
 })
 
 var hotMiddleware = require('webpack-hot-middleware')(compiler, {
-  log: () => {}
+  log: () => {
+  }
 })
 // force page reload when html-webpack-plugin template changes
 compiler.plugin('compilation', function (compilation) {
   compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
-    hotMiddleware.publish({ action: 'reload' })
+    hotMiddleware.publish({action: 'reload'})
     cb()
   })
 })
 
 // proxy api requests
 /*Object.keys(proxyTable).forEach(function (context) {
-  var options = proxyTable[context]
-  if (typeof options === 'string') {
-    options = { target: options }
-  }
-  app.use(proxyMiddleware(options.filter || context, options))
-})*/
+ var options = proxyTable[context]
+ if (typeof options === 'string') {
+ options = { target: options }
+ }
+ app.use(proxyMiddleware(options.filter || context, options))
+ })*/
 
 /* 配置代理的路径上下文和代理主机路径 */
-var context = config.dev.context
-var proxypath = config.dev.proxypath
+var context = config.dev.context;
+var proxypath = '';
+var option = null;
 
-var options = {
-  target: proxypath,
-  changeOrigin: true,
+switch (process.env.NODE_ENV) {
+  case 'local' :
+    proxypath = 'http://localhost:8001';
+    break;
+  case 'online':
+    proxypath = 'http://cangdu.org:8001';
+    break;
+  default:
+    proxypath = 'config.dev.proxypath';
 }
+
+options = {
+  target: proxypath,
+  changeOrigin: true
+};
+
 if (context.length) {
-  app.use(proxyMiddleware(options.filter || context, options))
+  app.use(proxyMiddleware(context, options))
 }
 
 // 当请求URL包含/payapi/时，会被代理转发到https://pay.ele.me/payapi/上面去，比如（/payapi/getuserInfo => https://pay.ele.me/payapi/getuserInfo）

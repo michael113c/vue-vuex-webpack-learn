@@ -29,7 +29,7 @@ module.exports = {
     assetsPublicPath: '/',
     // proxyTable: {}, 官方已经不推荐使用该配置
 
-    context: [ //代理路径
+    context: [ // 代理路径
       '/shopping',
       '/ugc',
       '/v1',
@@ -40,9 +40,9 @@ module.exports = {
       '/member',
       '/promotion',
       '/eus',
+      '/payapi',
     ],
-
-    proxypath: 'https://mainsite-restapi.ele.me',   // 被代理的host地址
+    proxypath: 'http://cangdu.org:8001',   // 被代理的host地址
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)
