@@ -40,13 +40,25 @@ compiler.plugin('compilation', function (compilation) {
 })
 
 // proxy api requests
-Object.keys(proxyTable).forEach(function (context) {
+/*Object.keys(proxyTable).forEach(function (context) {
   var options = proxyTable[context]
   if (typeof options === 'string') {
     options = { target: options }
   }
   app.use(proxyMiddleware(options.filter || context, options))
-})
+})*/
+
+/* 配置代理的路径上下文和代理主机路径 */
+var context = config.dev.context
+var proxypath = config.dev.proxypath
+
+var options = {
+  target: proxypath,
+  changeOrigin: true,
+}
+if (context.length) {
+  app.use(proxyMiddleware(context, options))
+}
 
 // 当请求URL包含/payapi/时，会被代理转发到https://pay.ele.me/payapi/上面去，比如（/payapi/getuserInfo => https://pay.ele.me/payapi/getuserInfo）
 app.use(proxyMiddleware('/payapi', {
