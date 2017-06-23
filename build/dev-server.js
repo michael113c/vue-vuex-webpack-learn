@@ -57,7 +57,7 @@ var options = {
   changeOrigin: true,
 }
 if (context.length) {
-  app.use(proxyMiddleware(context, options))
+  app.use(proxyMiddleware(options.filter || context, options))
 }
 
 // 当请求URL包含/payapi/时，会被代理转发到https://pay.ele.me/payapi/上面去，比如（/payapi/getuserInfo => https://pay.ele.me/payapi/getuserInfo）
