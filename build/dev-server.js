@@ -62,7 +62,7 @@ switch (process.env.NODE_ENV) {
     proxypath = 'http://cangdu.org:8001';
     break;
   default:
-    proxypath = 'config.dev.proxypath';
+    proxypath = config.dev.proxypath;
 }
 
 options = {
