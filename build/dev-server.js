@@ -48,6 +48,19 @@ Object.keys(proxyTable).forEach(function (context) {
   app.use(proxyMiddleware(options.filter || context, options))
 })
 
+// 当请求URL包含/payapi/时，会被代理转发到https://pay.ele.me/payapi/上面去，比如（/payapi/getuserInfo => https://pay.ele.me/payapi/getuserInfo）
+app.use(proxyMiddleware('/payapi', {
+  target: 'https://pay.ele.me',
+  changeOrigin: true,
+}))
+
+// 使用情况和上面同理，这种一般用于在特殊场景上，非特殊场景在proxyTable上配置
+app.use(proxyMiddleware('/m.ele.me@json', {
+  target: 'https://crayfish.elemecdn.com',
+  changeOrigin: true,
+}))
+
+
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
 
