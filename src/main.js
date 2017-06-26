@@ -23,7 +23,9 @@ const router = new VueRouter({
     if (savedPosition) {
       return savedPosition
     } else {
-      if (from.meta.keepAlive) {  // 如果这个页面被缓存，则记录这个页面的滚动条距离顶部的位置
+      if (from.meta.keepAlive) {
+        // 如果这个页面被缓存，则记录这个页面的滚动条距离顶部的位置，
+        // 当重新返回这个页面时，滚动条滚动到指定位置。
         from.meta.savedPosition = document.body.scrollTop;
       }
       return {x: 0, y: to.meta.savedPosition || 0}

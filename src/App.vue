@@ -1,5 +1,6 @@
 <template>
 	<div>
+    <p>efg</p>
 		<transition name="router-fade" mode="out-in">
 			<keep-alive>
 			    <router-view v-if="$route.meta.keepAlive"></router-view>
@@ -14,7 +15,7 @@
 <script>
 
   	export default {
-    	
+
   	}
 
 </script>
