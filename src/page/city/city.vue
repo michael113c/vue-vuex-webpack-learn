@@ -89,7 +89,7 @@
                     let checkrepeat = false;
                     this.placeHistory = JSON.parse(history);
                     this.placeHistory.forEach(item => {
-                        if (item.geohash == geohash) {
+                        if (item.geohash === geohash) {
                             checkrepeat = true;
                         }
                     })
