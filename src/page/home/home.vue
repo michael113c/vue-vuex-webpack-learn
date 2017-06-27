@@ -18,6 +18,9 @@
     <section id="hot_city_container">
       <h4 class="city_title">热门城市</h4>
       <ul class="citylistul clear">
+        <!--有时候想要 <router-link> 渲染成某种标签，例如 <li>。 于是我们使用 tag prop 类指定何种标签，同样它还是会监听点击，
+        触发导航-->
+        <!--为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一 key 属性-->
         <router-link tag="li" v-for="item in hotcity" :to="'/city/' + item.id" :key="item.id">
           {{item.name}}
         </router-link>
@@ -25,6 +28,7 @@
     </section>
     <section class="group_city_container">
       <ul class="letter_classify">
+        <!--遍历对象可提供的值有key、value、index-->
         <li v-for="(value, key, index) in sortgroupcity" :key="key" class="letter_classify_li">
           <h4 class="city_title">{{key}}
             <span v-if="index == 0">（按字母排序）</span>
@@ -32,7 +36,6 @@
           <ul class="groupcity_name_container citylistul clear">
             <router-link tag="li" v-for="item in value" :to="'/city/' + item.id" :key="item.id" class="ellipsis">
               {{item.name}}
-
             </router-link>
           </ul>
         </li>
@@ -61,17 +64,17 @@
       cityGuess().then(res => {
         this.guessCity = res.name;
         this.guessCityid = res.id;
-      })
+      });
 
       //获取热门城市
       hotcity().then(res => {
         this.hotcity = res;
-      })
+      });
 
       //获取所有城市
       groupcity().then(res => {
         this.groupcity = res;
-      })
+      });
     },
 
     components: {
