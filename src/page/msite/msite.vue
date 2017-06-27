@@ -50,7 +50,7 @@
   import shopList from 'src/components/common/shoplist'
   import {msiteAdress, msiteFoodTypes, cityGuess} from 'src/service/getData'
   import 'src/plugins/swiper.min.js'
-  import 'src/style/swiper.min.css'
+  import 'src/style/swiper.min.css' // 还可以加载样式
 
   export default {
     data(){
