@@ -44,7 +44,7 @@
         methods: {
             download(){
                 //如果是ios用户则提示，否则直接下载
-                if( this.system == 'IOS'){
+                if( this.system === 'IOS'){
                     this.showAlert = true;
                     this.alertText = 'IOS用户请前往AppStore下载'
                 }else{
@@ -61,10 +61,10 @@
         }
     }
 </script>
-  
+
 <style lang="scss" scoped>
     @import 'src/style/mixin';
-  
+
     .download_page{
         position: absolute;
         top: 0;

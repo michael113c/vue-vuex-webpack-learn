@@ -77,7 +77,7 @@
                     //倒计时
                     this.timer = setInterval(() => {
                         this.computedTime --;
-                        if (this.computedTime == 0) {
+                        if (this.computedTime === 0) {
                             clearInterval(this.timer)
                         }
                     }, 1000)
@@ -148,7 +148,7 @@
             },
             closeTip(){
                 this.showAlert = false;
-            }   
+            }
         }
     }
 
