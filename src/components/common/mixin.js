@@ -4,6 +4,8 @@ import {localapi, proapi} from "../../config/env";
 export const loadMore = {
   directives: {
     'load-more': {
+      // el-->指令所绑定的元素，可以用来直接操作 DOM
+      // binding-->一个对象,包含绑定的值
       bind: (el, binding) => {
         let windowHeight = window.screen.height;
         let height;
@@ -16,7 +18,7 @@ export const loadMore = {
         let heightEl;
         let scrollType = el.attributes.type && el.attributes.type.value;
         let scrollReduce = 2;
-        if (scrollType == 2) {
+        if (scrollType === 2) {
           scrollEl = el;
           heightEl = el.children[0];
         } else {
@@ -26,26 +28,27 @@ export const loadMore = {
 
         el.addEventListener('touchstart', () => {
           height = heightEl.clientHeight;
-          if (scrollType == 2) {
-            height = height
-          }
+          // todo 为什么要这样赋值
+          /*if (scrollType === 2) {
+           height = height
+           }*/
           setTop = el.offsetTop;
           paddingBottom = getStyle(el, 'paddingBottom');
           marginBottom = getStyle(el, 'marginBottom');
-        }, false)
+        }, false);
 
         el.addEventListener('touchmove', () => {
           loadMore();
-        }, false)
+        }, false);
 
         el.addEventListener('touchend', () => {
           oldScrollTop = scrollEl.scrollTop;
           moveEnd();
-        }, false)
+        }, false);
 
         const moveEnd = () => {
           requestFram = requestAnimationFrame(() => {
-            if (scrollEl.scrollTop != oldScrollTop) {
+            if (scrollEl.scrollTop !== oldScrollTop) {
               oldScrollTop = scrollEl.scrollTop;
               moveEnd()
             } else {
@@ -54,7 +57,7 @@ export const loadMore = {
               loadMore();
             }
           })
-        }
+        };
 
         const loadMore = () => {
           if (scrollEl.scrollTop + windowHeight >= height + setTop + paddingBottom + marginBottom - scrollReduce) {
