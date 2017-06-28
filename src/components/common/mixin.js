@@ -70,6 +70,7 @@ export const getImgPath = {
   methods: {
     //传递过来的图片地址需要处理后才能正常使用
     getImgPath(path) {
+      console.log("method invoked...");
       let suffix;
       if (!path) {
         return 'http://test.fe.ptdev.cn/elm/elmlogo.jpeg'
@@ -83,5 +84,4 @@ export const getImgPath = {
       return 'https://fuss10.elemecdn.com' + url
     },
   }
-
-}
+};
