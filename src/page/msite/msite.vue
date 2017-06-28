@@ -80,7 +80,8 @@
       this.hasGetData = true;
     },
     mounted(){
-      //获取导航食品类型列表
+      // 获取导航食品类型列表
+      // 注意：这里执行了两次then,这个有什么讲究嘛？？？
       msiteFoodTypes(this.geohash).then(res => {
         let resLength = res.length;
         let resArr = [...res]; // 返回一个新的数组
